@@ -1,7 +1,17 @@
 <script setup>
     import { defineProps, defineEmits } from 'vue'
     const name = 'Input';
-    const emit = defineEmits();
+    const emit = defineEmits(['update:value', 'update:selected']);
+    // const updateValue = (event) => {
+    //     emit('update:value', parseFloat(event.target.value) || 0);
+    // };
+    const updateValue = (event) => {
+    const newValue = parseFloat(event.target.value) || 0; // Conversione del valore a numero
+        emit('update:value', newValue);
+    };
+    const updateSelected = (event) => {
+        emit('update:selected', event.target.value);
+    };
     const props = defineProps({
             value: {
                 type: Number,
@@ -17,12 +27,13 @@
             }
         }
     )
+
 </script>
 
 <template>
     <div class="currency-input">
-        <input type="number" :value="value" @input="emit('update:value', $event.target.value)" placeholder="Inserieci il valore">
-        <select :value="selected" @change="emit('update:selected', $event.target.value)">
+        <input type="number" :value="value" @input="updateValue" placeholder="Inserisci il valore">
+        <select :value="selected" @change="updateSelected">
             <!-- <option v-for="option in options" :key="option" :value="option">{{ option }}</option> -->
             <option v-for="([code, name]) in options" :key="code" :value="code">{{ code }} - {{ name }}</option>
         </select>
