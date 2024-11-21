@@ -5,10 +5,14 @@
     const props = defineProps({
             value: {
                 type: Number,
-                default: ''
+                default: 0
             },
             selected: {
                 type: String,
+                required: true
+            },
+            options: {
+                type: Array,
                 required: true
             }
         }
@@ -17,11 +21,10 @@
 
 <template>
     <div class="currency-input">
-        <input type="number" :value="props.value" @input="emit('update:value', $event.target.value)" placeholder="Inserieci il valore">
-        <select :value="props.selected" @change="emit('update:selected', $event.target.value)">
-            <option value="EUR">Euro (EUR)</option>
-            <option value="USD">Dollaro (USD)</option>
-            <option value="GBP">Sterlina (GBP)</option>
+        <input type="number" :value="value" @input="emit('update:value', $event.target.value)" placeholder="Inserieci il valore">
+        <select :value="selected" @change="emit('update:selected', $event.target.value)">
+            <!-- <option v-for="option in options" :key="option" :value="option">{{ option }}</option> -->
+            <option v-for="([code, name]) in options" :key="code" :value="code">{{ code }} - {{ name }}</option>
         </select>
     </div>
 </template>
