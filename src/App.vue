@@ -58,6 +58,18 @@
         valuta2.value = selected;
         convertCurrency2to1();
     }
+    // Funzione per invertire valute e valori
+    const swapCurrencies = () => {
+        // Scambia le valute selezionate
+        const tempValuta = valuta1.value;
+        valuta1.value = valuta2.value;
+        valuta2.value = tempValuta;
+
+        // Aggiorna i valori
+        const tempNumber = number1.value;
+        number1.value = number2.value;
+        number2.value = tempNumber;
+    };
 </script>
 
 <template>
@@ -65,6 +77,7 @@
         <h1>Convertitore di valute</h1>
         <!-- Prima input e select -->
         <Input :value="number1" :options="options" :selected="valuta1" :is-disabled="valuta2" @update:value="updateValue1" @update:selected="updateValuta1"/>
+        <button class="swap-button" @click="swapCurrencies">⇆ Scambia valute</button>
         <!-- Seconda input e select -->
         <Input :value="number2" :options="options" :selected="valuta2" :is-disabled="valuta1" @update:value="updateValue2" @update:selected="updateValuta2"/>
     </div>
@@ -74,5 +87,20 @@
 .my-cd{
   text-align: center;
   margin: 20px;
+  .swap-button {
+    margin: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #45a049;
+    }
+  }
 }
 </style>
