@@ -48,13 +48,16 @@
         valuta2.value = selected;
         convertCurrency2to1();
     }
+    // const valutaDisabled = (valuta, selectedValuta) => {
+    //     return valuta === selectedValuta
+    // }   
 </script>
 
 <template>
     <div class="my-cd">
         <h1>Convertitore di valute</h1>
-        <Input :value="number1" :options="options" :selected="valuta1" @update:value="updateValue1" @update:selected="updateValuta1"/>
-        <Input :value="number2" :options="options" :selected="valuta2" @update:value="updateValue2" @update:selected="updateValuta2"/>
+        <Input :value="number1" :options="options" :selected="valuta1" :is-disabled="valuta2" @update:value="updateValue1" @update:selected="updateValuta1"/>
+        <Input :value="number2" :options="options" :selected="valuta2" :is-disabled="valuta1" @update:value="updateValue2" @update:selected="updateValuta2"/>
     </div>
 </template>
 
