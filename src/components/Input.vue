@@ -1,18 +1,22 @@
 <script setup>
     import { defineProps, defineEmits } from 'vue'
     const props = defineProps({
+            // Valore di deafult
             value: {
                 type: Number,
                 default: 0
             },
+            // Valuta selezionata
             selected: {
                 type: String,
                 required: true
             },
+            // Lista delle valute
             options: {
                 type: Array,
                 required: true
             },
+            // Valuta disabilitata se già selezionatain un al'tra select
             isDisabled: {
                 type: String,
                 required: true
@@ -20,6 +24,7 @@
         }
     )
     const name = 'Input';
+    // Funzioni per aggiornare i valori con emit
     const emit = defineEmits(['update:value', 'update:selected']);
     // const updateValue = (event) => {
     //     emit('update:value', parseFloat(event.target.value) || 0);
@@ -31,6 +36,7 @@
     const updateSelected = (event) => {
         emit('update:selected', event.target.value);
     };
+    // Funzione per controllare se la valuta è disabilitata
     const isDisabled = (valuta) => {
         return valuta === props.isDisabled;
     }
