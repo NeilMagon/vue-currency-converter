@@ -2,6 +2,7 @@
     import { ref, onMounted } from 'vue'
     import axios from 'axios'
     import Input from './components/Input.vue'
+    import Graphic from './components/Graphic.vue';
     // Valore di deafault prima input
     const number1 = ref(0)
     // Valore di deafault seconda input
@@ -73,7 +74,7 @@
 </script>
 
 <template>
-    <div class="container d-flex justify-content-center">
+    <div class="container d-flex justify-content-center my-container">
         <div class="my-cd shadow p-5">
             <h1>Convertitore di valute</h1>
             <div class="my-bg">{{ number1 }} {{ valuta1 }} è uguale a</div>
@@ -83,6 +84,8 @@
             <button class="swap-button" @click="swapCurrencies">⇆ Scambia valute</button>
             <!-- Seconda input e select -->
             <Input :value="number2" :options="options" :selected="valuta2" :is-disabled="valuta1" @update:value="updateValue2" @update:selected="updateValuta2"/>
+            <!-- Componente grafico per il rapporto delle valute -->
+            <Graphic :valuta1="valuta1" :valuta2="valuta2" />
         </div>
     </div>
 </template>
@@ -92,6 +95,7 @@
     place-items: center;
     border: 1px solid;
     border-color: #47d107;
+    width: 1000px;
   h1{
     color: #07ee2e;
     text-transform: uppercase;
