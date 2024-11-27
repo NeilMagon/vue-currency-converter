@@ -73,33 +73,44 @@
 </script>
 
 <template>
-    <div class="my-cd">
-        <h1>Convertitore di valute</h1>
-        <!-- Prima input e select -->
-        <Input :value="number1" :options="options" :selected="valuta1" :is-disabled="valuta2" @update:value="updateValue1" @update:selected="updateValuta1"/>
-        <button class="swap-button" @click="swapCurrencies">⇆ Scambia valute</button>
-        <!-- Seconda input e select -->
-        <Input :value="number2" :options="options" :selected="valuta2" :is-disabled="valuta1" @update:value="updateValue2" @update:selected="updateValuta2"/>
+    <div class="container d-flex justify-content-center">
+        <div class="my-cd shadow p-5">
+            <h1>Convertitore di valute</h1>
+            <div class="my-bg">{{ number1 }} {{ valuta1 }} è uguale a</div>
+            <h3 class="my-bg">{{ number2 }} {{ valuta2 }}</h3>
+            <!-- Prima input e select -->
+            <Input :value="number1" :options="options" :selected="valuta1" :is-disabled="valuta2" @update:value="updateValue1" @update:selected="updateValuta1"/>
+            <button class="swap-button" @click="swapCurrencies">⇆ Scambia valute</button>
+            <!-- Seconda input e select -->
+            <Input :value="number2" :options="options" :selected="valuta2" :is-disabled="valuta1" @update:value="updateValue2" @update:selected="updateValuta2"/>
+        </div>
     </div>
 </template>
 
 <style scoped  lang="scss">
 .my-cd{
-  text-align: center;
-  margin: 20px;
+    place-items: center;
+    border: 1px solid;
+    border-color: #47d107;
+  h1{
+    color: #07ee2e;
+    text-transform: uppercase;
+  }
+  .my-bg{
+    color: #80e750;
+  }
   .swap-button {
     margin: 20px;
-    padding: 10px 20px;
+    padding: 8px 15px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #4caf50;
-    color: white;
+    background-color: #47d107;
     border: none;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.5s ease;
 
     &:hover {
-      background-color: #45a049;
+      background-color: #83dd5a;
     }
   }
 }

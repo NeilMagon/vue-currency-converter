@@ -44,7 +44,7 @@
 
 <template>
     <div class="currency-input">
-        <input type="number" :value="value" @input="updateValue" placeholder="Inserisci il valore">
+        <input type="text" :value="value" @input="updateValue" placeholder="Inserisci il valore">
         <select :value="selected" @change="updateSelected">
             <!-- <option v-for="option in options" :key="option" :value="option">{{ option }}</option> -->
             <option v-for="([code, name]) in options" :key="code" :value="code" :disabled="isDisabled(code)">{{ code }} - {{ name }}</option>
@@ -55,14 +55,21 @@
 <style scoped lang="scss">
     .currency-input {
         display: flex;
-        gap: 10px;
         align-items: center;
         input {
-            width: 120px;
-            padding: 5px;
+            width: 150px;
+            height: 45px;
+            padding: 0 5px;
+            border: 1px solid;
+            border-color:  #47d107;
+            background-color: #92e969;
         }
         select {
-            padding: 5px;
+            height: 45px;
+            padding: 0 5px;
+            border: 1px solid;
+            border-color:  #47d107;
+            background-color: #92e969;
         }
     }
 </style>
